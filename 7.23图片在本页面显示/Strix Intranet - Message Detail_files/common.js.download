@@ -1,0 +1,53 @@
+﻿MainColor = "#1d3c75";
+ReverseColor = "#b52228";
+TextColor = "#666666";
+
+isDesktop = (window.innerWidth && window.innerWidth >= 992 || document.body && document.body.clientWidth && document.body.clientWidth >= 992);
+
+isIE = document.all;
+
+function getIEVer() {
+    var ver = 0;
+    var userAgent = navigator.userAgent;
+    var rMsie = /(msie\s|trident.*rv:)([\w.]+)/;
+    var ua = userAgent.toLowerCase();
+    var match = rMsie.exec(ua);
+    if (match != null) {
+        ver = parseInt(match[2]);
+    }
+    return ver;
+}
+
+//Bootstrap Alert
+bootstrap_alert = function () { }
+bootstrap_alert.warning = function (id, message) {
+    $(id).css("display","block");
+    $(id).html('<div class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
+}
+bootstrap_alert.info = function (id, message) {
+    $(id).css("display", "block");
+    $(id).html('<div class="alert alert-info"><a class="close" data-dismiss="alert">×</a><span>' + message + '</span></div>')
+}
+
+//// Remove space at both left and right
+//String.prototype.Trim = function () {
+//    return this.replace(/(^\s*)|(\s*$)/g, "");
+//}
+//// Remove space at left
+//String.prototype.LTrim = function () {
+//    return this.replace(/(^\s*)/g, "");
+//}
+//// Remove space at right
+//String.prototype.RTrim = function () {
+//    return this.replace(/(\s*$)/g, "");
+//}
+$(function () {
+    $("div.dropup").find(".select-item:first-child").each(function () {
+        var val = $(this).attr("title");
+        if (val != undefined && val != "") {
+            var li = $(this).parent().siblings("ul").find("li[title='" + val + "']");
+            var html = li.find("a").html();
+            $(this).html(html);
+        }
+    });
+});

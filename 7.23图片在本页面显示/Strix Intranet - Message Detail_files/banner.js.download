@@ -1,0 +1,79 @@
+﻿$(function () {
+    setInterval(function () {
+        var UK = getTime('Europe/London'), CN = getTime('Asia/Shanghai');
+        $("#time-zone").html("UK: " + UK + "<br>" + "CN: " + CN);
+    }, 500);
+
+    $(".datetime").each(function () {
+        if (window.location.href.indexOf('intra2.') > 0) {
+            convertTime($(this), "Asia/Shanghai");
+        } else {
+            convertTime($(this), "Europe/London");
+        }
+    });
+
+    if (isDesktop) {
+
+        //banner
+        var today = new Date();
+        var start = new Date();
+        var end = new Date();
+
+        start.setFullYear(2017, 0, 1) //Month should be subtracted by 1
+        start.setHours(0);
+        start.setMinutes(0);
+
+        end.setFullYear(2017, 0, 6); //Month should be subtracted by 1
+        end.setHours(23);
+        end.setMinutes(59);
+
+        if (start > today || end < today) {
+            $("#top-banner").text = "";
+            $("#top-banner").css("animation-play-state", "paused");
+        }
+        else {
+            $("#top-banner").text("Happy New Year!");
+        }
+    }
+
+    setFootToBottom();
+});
+
+function getTime(zone) {
+    var format = "DD/MM/YYYY HH:mm";
+    var localTime = moment().tz(zone).format(format);
+    return localTime;
+}
+
+function convertTime(widget,zone) {
+    if (widget.val() == "" && widget.html() == "")
+        return;
+    var format = widget.attr('format');
+    if (widget.get(0).nodeName == "INPUT") {
+        var time = moment.utc(widget.val(), format);
+        var localTime = moment.tz(time, zone).format(format);
+        widget.val(localTime);
+    }
+    else {
+        var time = moment.utc(widget.html(), format);
+        var localTime = moment.tz(time, zone).format(format);
+        widget.html(localTime);
+    }
+}
+
+function setFootToBottom()
+{
+    //Set foot to bottom always
+    $("#body-foot").css("padding-top", 20);
+    var winH = $(window.document).height();
+    var h = $("#body-foot").height();
+    var offsetTop = $("#body-foot").offset().top;
+    if (winH > h + offsetTop + 20) {
+        var topH = $("#body-top").height();
+        var navH = $("#body-nav").height();
+        var mainH = $("#body-main").height();
+        $("#body-foot").css("padding-top", winH - h - topH - navH - mainH - 2); // 2 is border of body
+    }
+    //else 
+    //    $("#body-foot").css("padding-top", 20);
+}
