@@ -1,0 +1,213 @@
+﻿$(document).ready(function (e) {
+    initPage();
+
+    var src = {
+        jobNo: $("#srchSupportId").val(),
+        requestor: $("#srchFullName").val(),
+        description: $("#srchProblemDesc").val(),
+        owner: $("#owner .select-item:first-child").attr("title"),
+        supportTypeId: $("#supportTypeId").val()
+    }
+    sendAjax(src);
+});
+
+function initPage() {
+    //combo box
+    $(".combo-box ul li").click(function () {
+        var text = $(this).text();
+        var title = $(this).attr("title");
+        if (title == undefined)
+            title = "";
+        $(this).parent().siblings("button").children(".select-item").text(text);
+        $(this).parent().siblings("button").children(".select-item").attr("title", title);
+    });
+
+    var ownerId = $("#owner .select-item:first-child").attr("title");
+    $(".combo-box ul li").each(function () {
+        var ownerListItemId = $(this).attr("title");
+        if (ownerId == ownerListItemId) {
+            $("#owner .select-item:first-child").html($(this).children("a").html());
+        }
+    });
+
+    if (window.location.href.toString().indexOf("SupportTypeId=46090") > 0) { // Long term issues
+        $("#longTermList").addClass("focus-item");
+        $("#supportTypeId").val("46090");
+        $("#orderBy").val(2); // Descending order by date submitted
+    }
+    else {
+        $("#normalList").addClass("focus-item");
+    }
+    $("#longTermList").click(function () {
+        if (window.location.href.toString().indexOf("SupportTypeId=46090") < 0) { //Not find longterm
+            window.location.href = "SupportList?SupportTypeId=46090";
+        }
+    });
+    $("#normalList").click(function () {
+        if (window.location.href.toString().indexOf("SupportTypeId=46090") > 0) { //Find longterm
+            window.location.href = "SupportList";
+        }
+    });
+}
+function Search_OnClick() {
+    var src = {
+        jobNo: $("#srchSupportId").val(),
+        requestor: $("#srchFullName").val(),
+        description: $("#srchProblemDesc").val(),
+        owner: $("#owner .select-item:first-child").attr("title"),
+        supportTypeId: $("#supportTypeId").val()
+    }
+    sendAjax(src);
+}
+function Clear_OnClick() {
+    $("#srchSupportId").val("");
+    $("#srchFullName").val("");
+    $("#srchProblemDesc").val("");
+    $("#owner .select-item:first-child").attr("title", "").text(" ");
+    orderBy: $("#orderBy").val("");
+
+    var src = {
+        jobNo: $("#srchSupportId").val(),
+        requestor: $("#srchFullName").val(),
+        description: $("#srchProblemDesc").val(),
+        owner: $("#owner .select-item:first-child").attr("title"),
+        supportTypeId: $("#supportTypeId").val()
+    }
+    sendAjax(src);
+}
+function OrderBy_OnClick(item) {
+    if (item == "c") {
+        if ($("#orderBy").val() == 2) //2 -- create date asc
+            $("#orderBy").val(1); //1 -- create date desc
+        else
+            $("#orderBy").val(2);
+    }
+    else {
+        if ($("#orderBy").val() == 3) //3 -- target date desc
+            $("#orderBy").val(4); //4 -- target date asc
+        else
+            $("#orderBy").val(3);
+    }
+    var src = {
+        jobNo: $("#srchSupportId").val(),
+        requestor: $("#srchFullName").val(),
+        description: $("#srchProblemDesc").val(),
+        owner: $("#owner .select-item:first-child").attr("title"),
+        orderBy: $("#orderBy").val(),
+        supportTypeId: $("#supportTypeId").val()
+    };
+    sendAjax(src);
+}
+function sendAjax(src) {
+    $.ajax({
+        type: "POST",
+        url: window.location.href,
+        data: src,
+        success: function (result) {
+            loadTables(result);
+        }
+    });
+}
+function loadTables(json) {
+    if (isDesktop)
+    {
+        $("#support-list-table").css("display", "block");
+        $("#support-list-table2").css("display", "none");
+    }
+    else
+    {
+        $("#support-list-table").css("display", "none");
+        $("#support-list-table2").css("display", "block");
+    }
+
+    //Remove all rows except the header row
+    if ($("#support-list-table").size() > 0) {
+        $("#support-list-table").find("tr:not(:first)").remove();
+    }
+    if ($("#support-list-table2").size() > 0) {
+        $("#support-list-table2").find("tr:not(.header-row)").remove();
+    }
+
+    //var json = "[{'SupportId':'207510','HasImage':'True','FullName':'David Kenworthy','targetdate':'','ProblemDesc':'FMT is on holiday, please reject ECN 10685 for him.'},{'SupportId':'207509','HasImage':'True','FullName':'Frank Zammit','targetdate':'','ProblemDesc':'NCMR109010 is locked   closed but requires updating\r\n'}]";
+    json = eval("(" + json + ")");
+    $("#recordsNo").text(json.length.toString());
+    var color = "";
+    for (var i = 0; i < json.length; i++) {
+        var newRow = null;
+        var SupportId = parseInt(json[i].SupportId);
+        var UserId = parseInt(json[i].UserId);
+        var HasImage = json[i].HasImage;
+        var FullName = json[i].FullName;
+        var ProblemDesc = json[i].ProblemDesc;
+        var PriorityId = json[i].PriorityId;
+        var PriorityDesc = json[i].PriorityDesc;
+        //var bgColors = ["red", "yellow", "lightgreen", "#666666"];
+        var DateSubmitted = json[i].DateSubmitted;
+        var TargetDate = (!json[i].TargetDate || json[i].TargetDate.length == 0) ? "Unassigned" : json[i].TargetDate;
+        var sdesc = json[i].sdesc;
+        var AssignedTo = json[i].AssignedTo;
+        var datecompleted = json[i].datecompleted;
+        var noactivity = json[i].noactivity;
+
+        //Set red color to those over target date
+        var TargetDateArr = TargetDate.split("/");
+        var CompletedDateArr = datecompleted.substring(0, datecompleted.indexOf(" ")).split("/");
+        //var DateSubmittedArr = DateSubmitted.split("/");
+        if (TargetDateArr.length > 1) {
+            var TargetDateTemp = new Date();
+            var CompletedDateTemp = new Date();
+            //var DateSubmittedTemp = new Date();
+            TargetDateTemp.setFullYear(TargetDateArr[2], TargetDateArr[1] - 1, TargetDateArr[0]);
+            CompletedDateTemp.setFullYear(CompletedDateArr[2], CompletedDateArr[1] - 1, CompletedDateArr[0]);
+            //DateSubmittedTemp.setFullYear(DateSubmittedArr[2], DateSubmittedArr[1] - 1, DateSubmittedArr[0]);
+            //if (CompletedDateTemp > TargetDateTemp && TargetDateTemp >= DateSubmittedTemp)
+            if (CompletedDateTemp > TargetDateTemp)
+                color = "style='color:red;'";
+            else
+                color = "";
+        }
+        else
+            color = "";
+
+
+        if (isDesktop) {
+            newRow = "<tr  bgcolor='#ffffff'>";
+            newRow += "<td class='text' align='center' style='line-height:24px;'><a href='SupportDetails?SupportId=" + SupportId + "'>" + SupportId + "</a></td>";
+            newRow += "<td class='text' style='line-height:24px;'><a href='../admin/default/edituser?UserId=" + UserId + "' title=" + FullName + ">"
+            if (HasImage.toString().toLowerCase() == "true")
+                newRow += "<img border='0' height='57' width='64' alt='" + FullName + "' title='" + FullName + "' src='" + $("#siteName").val() + "images/users/thumbs/" + UserId + "_userth.jpg'></a></td>";
+            else
+                newRow += (FullName + "</a></td>");
+            newRow += "<td class='text' style='line-height:24px;word-break:break-all;word-wrap:break-word;white-space:pre-wrap;'><a " + color + " href='SupportDetails?SupportId=" + SupportId + "'>" + ProblemDesc + "</a></td>";
+            newRow += "<td class='textbold' style='line-height:24px;' align='center'>" + PriorityDesc + "</td>";
+            newRow += "<td class='text' style='line-height:24px;'><font color='navy'>" + DateSubmitted + "</font><br><font color='#ff9966'>" + TargetDate + "</font></td>";
+            newRow += "<td class='text' style='line-height:24px;'>" + sdesc + "</td>";
+            newRow += "<td class='text' style='line-height:24px;'>" + AssignedTo + "</td>";
+            newRow += "<td class='text datetime' style='line-height:24px;' format='DD/MM/YYYY HH:mm:ss'>" + datecompleted + "</td>";
+            newRow += "<td class='text' style='line-height:24px;'>" + noactivity + "</td>";
+            newRow += "</tr>";
+            $("#support-list-table tr:last").after(newRow);
+        }
+        else {
+            newRow = "<tr  bgcolor='#ffffff'>";
+            newRow += "<td class='text' rowspan='3' valign='middle'><a href='SupportDetails?SupportId=" + SupportId + "'>" + SupportId + "<br>" + FullName + "</a></td>";
+            newRow += "<td class='text' colspan='3' style='word-break:break-all;word-wrap:break-word;white-space:pre-wrap;'><a " + color + " href='SupportDetails?SupportId=" + SupportId + "'>" + ProblemDesc + "</a></td>";
+            newRow += "</tr>";
+            $("#support-list-table2 tr:last").after(newRow);
+            newRow = "<tr  bgcolor='#ffffff'>";
+            newRow += "<td class='text'>" + PriorityDesc + "</td>";
+            newRow += "<td class='text'><font color='navy'>" + DateSubmitted + "</font><br><font color='#ff9966'>" + TargetDate + "</font></td>";
+            newRow += "<td class='text'>" + sdesc + "</td>";
+            newRow += "</tr>";
+            $("#support-list-table2 tr:last").after(newRow);
+            newRow = "<tr  bgcolor='#ffffff'>";
+            newRow += "<td class='text'>" + AssignedTo + "</td>";
+            newRow += "<td class='text datetime' format='DD/MM/YYYY HH:mm:ss'>" + datecompleted + "</td>";
+            newRow += "<td class='text'>" + noactivity + "</td>";
+            newRow += "</tr>";
+            $("#support-list-table2 tr:last").after(newRow);
+        }
+    }
+
+    setFootToBottom();
+}

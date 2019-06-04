@@ -1,0 +1,28 @@
+﻿$(function () {
+    var parentW = $("#tabbar").parent().innerWidth();
+    var padding = 10;//$("#tabbar ul").css("padding-left");
+
+    var list = $("#tabbar ul").children();
+    var ulW = 0;
+    for (var i = 0; i < list.length; i++)
+        ulW += (list[i].clientWidth + 20);
+
+    $("#tabbar ul").swipe({
+        swipeStatus: function (event, phase, direction, distance, duration, fingerCount) {
+            if (parentW < ulW) {
+                if (direction == "left") {
+                    var marginL = parseInt($("#tabbar ul").css("margin-left").toString());
+                    marginL = marginL - distance + ulW < parentW ? parentW - ulW : marginL - distance;
+                    $("#tabbar ul").css("margin-left", marginL);
+                    marginL = $("#tabbar ul").css("margin-left");
+                    //alert(marginL);
+                }
+                else if (direction == "right") {
+                    var marginL = parseInt($("#tabbar ul").css("margin-left").toString());
+                    marginL = marginL + distance > 0 ? 0 : marginL + distance;
+                    $("#tabbar ul").css("margin-left", marginL);
+                }
+            }
+        },
+    });
+});
