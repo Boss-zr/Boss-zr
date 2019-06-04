@@ -1,0 +1,272 @@
+﻿
+
+H1
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 16pt;
+	font-weight : bold;
+	TEXT-ALIGN: center;
+}
+
+H2
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 13pt;
+	font-weight : bold;
+    TEXT-ALIGN: left;
+}
+
+H3
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 10pt;
+	font-weight : bold;
+    TEXT-ALIGN: left;
+}
+H4
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 9pt;
+	font-weight : bold;
+    TEXT-ALIGN: left;
+}
+H5
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 8pt;
+	font-weight : bold;
+    TEXT-ALIGN: left;
+}
+TD.H1,TD.h1
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 16pt;
+	font-weight : bold;
+}
+TD.H2,TD.h2
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 13pt;
+	font-weight : bold;
+}
+TD.H3,TD.h3
+{
+	COLOR: dodgerblue;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 10pt;
+	font-weight : bold;
+}
+
+TD
+{
+	COLOR: black;
+	FONT-FAMILY: "Microsoft Sans Serif";
+	FONT-SIZE: 9pt;
+}
+TD p,TD span,TD label,TD div,td a
+{
+	FONT-FAMILY: "Microsoft Sans Serif";
+	FONT-SIZE: 9pt;
+}
+TD.FontisArial
+{
+   FONT-FAMILY:"Arial";   
+}
+TD.StandardText
+{
+    COLOR: black;
+    FONT-FAMILY: "Microsoft Sans Serif";
+    FONT-SIZE: 9pt;
+}
+TD.SmallText
+{
+    COLOR: black;
+    FONT-FAMILY: "Microsoft Sans Serif";
+    FONT-SIZE: 8pt;
+}
+TD.VerySmallText
+{
+    COLOR: black;
+    FONT-FAMILY: "Microsoft Sans Serif";
+    FONT-SIZE: 7pt;
+}
+TH.VerySmallText
+{
+    COLOR: black;
+    FONT-FAMILY: "Microsoft Sans Serif";
+    FONT-SIZE: 7pt;
+}
+TD.Text
+{
+    COLOR:Navy;
+    FONT-FAMILY: Arial;
+    FONT-SIZE: 9pt;
+    }
+TD.Bold,td.bold
+{
+	COLOR: black;
+	FONT-FAMILY: Tahoma;
+	FONT-SIZE: 9pt;
+	font-weight : bold;
+}
+TD.StandardTextBold
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 9pt;
+	font-weight : bold;
+}
+TD.SmallTextBold
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 8pt;
+	font-weight : bold;
+}
+TD.VerySmallTextBold
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 7pt;
+	font-weight : bold;
+}
+TH.VerySmallTextBold
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 7pt;
+	font-weight : bold;
+}
+TD.Mono
+{
+	FONT-SIZE: 9pt;
+	FONT-FAMILY: "Courier New";
+	WORD-WRAP: break-word;
+/*	WORD-BREAK: break-all;*/
+}
+
+TR.EVEN
+{
+	background-color : lightgoldenrodyellow;
+}
+TR.ODD
+{
+	background-color : white;
+}
+TD.FieldName
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: right;
+	VERTICAL-ALIGN:top;
+}
+
+TD.FieldName label
+{
+    COLOR: black;
+    FONT-FAMILY: Tahoma;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: right;
+	VERTICAL-ALIGN:top;
+}
+
+td{
+    padding:1px;
+}
+
+.strix-form input{
+    display:inline-block;
+    margin:0px;
+}
+
+.strix-form label {
+    font-weight:normal;
+}
+.strix-form span.bold label {
+    font-weight:bold;
+}
+.strix-form .table td {
+    color:black;
+}
+.Bold {
+    font-weight:bold;
+}
+select.form-control,input.form-control {
+    display:inline-block;
+    margin:0px;
+    width:auto;
+    height:26px;
+}
+.PageHeader {
+    margin:6px 0px;
+    border-top:2px solid #ccc;
+    width: 100%
+}
+
+.table-condensed-xs > thead > tr > th, .table-condensed-xs > tbody > tr > th, .table-condensed-xs > tfoot > tr > th, .table-condensed-xs > thead > tr > td, .table-condensed-xs > tbody > tr > td, .table-condensed-xs > tfoot > tr > td {
+    padding: 0px;
+}
+
+.table-condensed-s > thead > tr > th, .table-condensed-s > tbody > tr > th, .table-condensed-s > tfoot > tr > th, .table-condensed-s > thead > tr > td, .table-condensed-s > tbody > tr > td, .table-condensed-xs > tfoot > tr > td {
+    padding: 1px;
+}
+
+label {
+    font-weight:normal;
+}
+
+#body-main {
+    min-height:500px;
+}
+
+input.ednone {
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    FONT-SIZE: 12px;
+    BORDER-LEFT: medium none;
+    BORDER-BOTTOM: medium none;
+    BACKGROUND-COLOR: transparent;
+}
+
+input.edline {
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    FONT-SIZE: 12px;
+    BORDER-LEFT: medium none;
+    BORDER-BOTTOM: #a0a0a0 1px solid;
+    BACKGROUND-COLOR: transparent;
+}
+
+input.ednonerightinput {
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: medium none;
+    FONT-SIZE: 12px;
+    BORDER-LEFT: medium none;
+    BORDER-BOTTOM: #a0a0a0 1px solid;
+    BACKGROUND-COLOR: transparent;
+    Text-Align: right;
+}
+
+blockquote {
+    padding: 3pt 6pt;
+    margin: 0 0 12pt;
+    font-size: 9pt;
+    border-left: 3px solid #eeeeee;
+}
+div.para {
+    padding: 3px;
+    background-color: #eeeeee;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #bbbbbb;
+}

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx -->
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+		<title>
+			Strix Intranet
+		</title>
+		<link href="https://intra2.strixgroup.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link href="./CarbookingList_files/bootstrap.css" rel="stylesheet">
+		<link href="./CarbookingList_files/theme.strix.css" rel="stylesheet">
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<link href="./CarbookingList_files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+		<link href="./CarbookingList_files/font-awesome.min.css" rel="stylesheet">
+		<script src="./CarbookingList_files/jquery-1.9.1.js.download"></script>
+		<script src="./CarbookingList_files/bootstrap.js.download"></script>
+		<script src="./CarbookingList_files/ie-emulation-modes-warning.js.download"></script>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+      <script src="/Scripts/html5shiv.min.js"></script>
+      <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+		<link href="./CarbookingList_files/intranet.css" rel="stylesheet">
+		<link href="./CarbookingList_files/base.css" rel="stylesheet">
+		<link rel="STYLESHEET" type="text/css" href="./CarbookingList_files/jquery-ui-1.10.4.custom.css">
+		<script src="./CarbookingList_files/jquery-ui-1.10.4.custom.min.js.download"></script>
+
+		<script src="./CarbookingList_files/chkfunction.js.download"></script>
+		<script language="javascript">
+			function validqty(source, arguments) {
+				//alert(arguments.value);
+				if(!checknumber(arguments.Value, 'How many traveller')) {
+					arguments.IsValid = false;
+				}
+			}
+
+			function validdate(source, arguments) {
+				if(!checkDate(arguments.Value, 'Using Date')) {
+					arguments.IsValid = false;
+				}
+			}
+
+			function validdest(source, arguments) {
+				if(!checkstring(arguments.Value, 50, 'Destination')) {
+					arguments.IsValid = false;
+				}
+			}
+
+			function validpurpose(source, arguments) {
+				if(!checkstring(arguments.Value, 330, 'Purpose')) {
+					arguments.IsValid = false;
+				}
+			}
+
+			function mouseover(userid) {
+				document.all.ifr1.src = '../../images/users/' + userid + '_user.jpg';
+				document.all.ifr1.style.display = 'block';
+				document.all.div1.style.display = 'block';
+			}
+
+			function mousedown() {
+
+				document.all.ifr1.style.display = 'none';
+				document.all.div1.style.display = 'none';
+			}
+		</script>
+
+		<style>
+			.ui-datepicker-month,
+			.ui-datepicker select.ui-datepicker-month,
+			.ui-datepicker select.ui-datepicker-year {
+				color: black;
+			}
+			
+			.ui-datepicker {
+				width: auto;
+			}
+		</style>
+		<link rel="import" href="chrome-extension://kkelicaakdanhinjdeammmilcgefonfh/assets/tpl/resize-tooltip.html">
+	</head>
+
+	<body style="border-top:2px solid #cccccc;">
+		<form name="aspnetForm" method="post" action="https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx" id="aspnetForm">
+			<div>
+				<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+				<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+				<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="gSX4Z2Y0/xJVAfRtf6/s6GyZIFqhXlKe+SBkUxNBwjDYJFNsT5shEg5KjFoi2ZtpDQDchtxn+y4IhDNyCJmd2lfyFG6T2pwKiUl5bLOAPkAQROuvahRK5Dc7yX4oU6JGLDPg/e8JcZcVgiS0c8owFunKedGwFSDa5Y27xaXEpkkjHofC4y9cRu0pvgX1n2alw++1uQh0AREDHq5ROjWVHxmqlQFDuMmgbg8nQG+lsgT4R63h+C0zWSS66zJlkmhy68yu22phVyD1SChK3KMLqSj9eiCArfGz6GgbHudQclstNe17S7ltgJoZYEcD7JU6GICHywL0WUZSdLEwdZC/nAETRouaADmXNQhm6dq6/Pm93sI+n7ck577ogaGKIAZ0d3NBO+I21y6geoC8+cvzjl8MxgTvVVziYiFdGInfRXE9tMJnoSdDC0/QPHLrdh9r013W67gYiPspLw0xvF9/EzEPR61ZR3rXGlaW4tnBMzm+fnSnS0YNi+UvVrNXEVvP/Vk9Uw+sfE67dJk9uA5GzazRoNp5VHfb3z6CfGD8tR/3cz++RZabbQyVC6zcL895qHSjff4JL/EoKZP2VpjcEUpPEkTGyx9Uh7y/ynmsv4Ldky4fkJrE/wIg8P1k1hmKJ3Mop0ITxZ7xFstMVlz/UfZ7mXgqX83hyeu2umBE6Zk00qu46+F1qS6t2IjOJayndBoTbdpwF5C/NgZiFVc5tFA5+t6iyYr2sWokGwlYBlNNEUBfqhTdXUgXsi4OBU4pifzgIF7vKLTkUsj9o5Kbm0D2Klgx2pSteglUIlcpZyupO92Ft/eyZWNM7eiQDSRVuCRGIdhtXGZ9Xj2WrICQih1C2Lo1EwbDtYiQSyQ5v3U9a0IOKQex98a8LrrYMwQt332/nE396BjFPsh98ynPDUmknKCqQrGELVmicEmoEcTLKrG+">
+			</div>
+
+			<script type="text/javascript">
+				//<![CDATA[
+				var theForm = document.forms['aspnetForm'];
+				if(!theForm) {
+					theForm = document.aspnetForm;
+				}
+
+				function __doPostBack(eventTarget, eventArgument) {
+					if(!theForm.onsubmit || (theForm.onsubmit() != false)) {
+						theForm.__EVENTTARGET.value = eventTarget;
+						theForm.__EVENTARGUMENT.value = eventArgument;
+						theForm.submit();
+					}
+				}
+				//]]>
+			</script>
+
+			<div>
+
+				<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="5A651BED">
+				<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">
+				<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="42RKYXWV9wpBywuDCYuN3Rr6WfRx7wZ7e3dK2gzttb9WoQAHpp7hodgAwEa9/tB1ET2M4McakDLJ2ezENBjjnJYasNjG0np/zWVENFEAxfXmLY+sbrVjcnNAv87fv/6IFXlZjA==">
+			</div>
+			<div id="body-top" class="top-container">
+				<div class="full-container">
+					<div class="row">
+						<div class="col-xs-12" id="top">
+							<div class="top-container-left" id="top-logo">
+								<a href="https://intra2.strixgroup.com/"><img src="./CarbookingList_files/strix-logo2.png"></a>
+
+							</div>
+							<div id="top-banner" class="top-banner"></div>
+							<div id="time-zone" class="top-container-right text-color">
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="full-container">
+
+				<div id="body-nav">
+					<nav class="navbar navbar-default">
+						<div class="container-fluid">
+							<div class="navbar-header" id="Home">
+								<a class="navbar-brand" href="https://intra2.strixgroup.com/IntranetNew/">Home</a>
+							</div>
+
+							<div id="navbar" class="navbar-collapse collapse">
+								<ul class="nav navbar-nav">
+									<li class="dropdown" id="Administration">
+										<a href="https://intra2.strixgroup.com/IntranetNew/admin/default/Index" style="font-weight: normal;">Administration<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-3">
+											<li>
+												<div class="row">
+													<div class="col-sm-4">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/Default/EmpDirectory">
+																	<div><i class="fa fa-sitemap fa1-1p5x admin-icon"></i></div>Employee Directory</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/Default/OrgChart">
+																	<div><i class="fa fa-sitemap fa1-1p5x admin-icon"></i></div>Organisational Chart</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/Default/StrixSites">
+																	<div><i class="fa fa-map-marker fa1-1p5x admin-icon"></i></div>Strix Sites</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/StrixTelephone.pdf">
+																	<div><i class="glyphicon glyphicon-phone-alt fa1-1p5x admin-icon"></i></div>Telephone List</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/admin/Default/PublicDocuments">
+																	<div><i class="fa fa-book fa1-1p5x admin-icon"></i></div>Public Documents</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/admin/message/Index">
+																	<div><i class="fa fa-comments fa1-1p5x admin-icon"></i></div>Message Board</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/HealthandSafety/index">
+																	<div><i class="fa fa-heart fa1-1p5x admin-icon"></i></div>Health and Safety</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/EnvControl/EnvControlList">
+																	<div><i class="fa fa-leaf fa1-1p5x admin-icon"></i></div>Environmental Control</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/admin/QualityEnv/QualityEnv">
+																	<div><i class="fa fa-book fa1-1p5x admin-icon"></i></div>Management Systems Manual </a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Admin/PressReleases/Index">
+																	<div><i class="fa fa-file fa1-1p5x admin-icon"></i></div>Press Releases</a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-4">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/admin/Default/PolicyDocuments">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x admin-icon"></i></div>Company Policies</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/telrecord.asp">
+																	<div><i class="fa fa-phone-square fa1-1p5x admin-icon"></i></div>Telephone Report</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/simclist.aspx">
+																	<div><i class="fa fa-phone-square fa1-1p5x admin-icon"></i></div>Mobile Phone Cost</a>
+															</li>
+
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx#" onclick="window.open(&#39;/admin/tsforuser.asp&#39;,&#39;THS_15599&#39;,&#39;resizable=1,scrollbars =0,titlebar =false,width =800,height =570&#39;);">
+																	<div><i class="fa fa-clock-o fa1-1p5x admin-icon"></i></div>Timesheet
+																</a>
+															</li>
+
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/holiday/myholiday.aspx">
+																	<div><i class="fa fa-sun-o fa1-1p5x admin-icon"></i></div>Holiday &amp; Leave</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/flextimeforuser.asp">
+																	<div><i class="fa fa-clock-o fa1-1p5x admin-icon"></i></div>Flexible Time For SIOM</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/hkpersonincn.asp">
+																	<div><i class="fa fa-calendar-check-o fa1-1p5x admin-icon"></i></div>Days in China</a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-4">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/sgzccalendar/2018SGZ_staff_Calendar.xlsx">
+																	<div><i class="fa fa-calendar fa1-1p5x admin-icon"></i></div>SGZ Staff Calendar - 2018</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/sgzccalendar/2017SGZ_staff_Calendar.xlsx">
+																	<div><i class="fa fa-calendar fa1-1p5x admin-icon"></i></div>SGZ Staff Calendar - 2017</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/inc/docdownload.asp?Table=StrixCRM.dbo.tblPublicDocuments&amp;Id=47207">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x admin-icon"></i></div>Code of Business Conduct, Values and Behaviours-En</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/inc/docdownload.asp?Table=StrixCRM.dbo.tblPublicDocuments&amp;Id=47206">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x admin-icon"></i></div>Code of Business Conduct, Values and Behaviours-Cn</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/pms/pmstasks.asp">
+																	<div><i class="fa fa-users fa1-1p5x admin-icon"></i></div>Performance Management Process</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="dropdown" id="Workflow">
+										<a href="https://intra2.strixgroup.com/IntranetNew/Workflow/default/Index" style="font-weight: bold;">Workflow<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-2">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/careport.asp">
+																	<div><i class="fa fa-dollar fa1-1p5x workflow-icon"></i></div>Cash Advances </a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/exreport.asp">
+																	<div><i class="fa fa-dollar fa1-1p5x workflow-icon"></i></div>Expenses Reclaiming</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/prongoing.asp">
+																	<div><i class="fa fa-file fa1-1p5x workflow-icon"></i></div>Purchase Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/pcdetailsadd.asp">
+																	<div><i class="fa fa-file-o fa-outside-1p5x workflow-icon"><i class="fa fa-dollar fa-inside-1p5x workflow-icon"></i></i>
+																	</div>Price Change &amp; Rebate</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/cndetailsadd.asp">
+																	<div><i class="fa fa-credit-card fa1-1p5x workflow-icon"></i></div>Credit Notes</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/trdetailsadd.asp">
+																	<div><i class="fa fa-plane fa1-1p5x workflow-icon"></i></div>Travel Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/eadetailsadd.asp">
+																	<div><i class="fa fa-list fa1-1p5x workflow-icon"></i></div>EA Workflow</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx">
+																	<div><i class="fa fa-car fa1-1p5x workflow-icon"></i></div>Car Booking (Only for SGZC)</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Workflow/Default/Settings">
+																	<div><i class="fa fa-gear fa1-1p25x workflow-icon"></i></div>Workflow Delegation</a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/newvendor.aspx">
+																	<div><i class="fa fa-file-o fa-outside-1p5x workflow-icon"><i class="fa fa-male fa-inside-1p5x workflow-icon"></i></i>
+																	</div>New Vendor Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/costup/costupedit.aspx?cid=">
+																	<div><i class="fa fa-file-powerpoint-o fa1-1p5x workflow-icon"></i></div>Purchasing Cost Up</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/sr/sr.aspx">
+																	<div><i class="fa fa-tasks fa1-1p5x workflow-icon"></i></div>Sample Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/ecn/website/ECNMain.aspx">
+																	<div><i class="fa fa-wrench fa1-1p5x workflow-icon"></i></div>Engineering Change (ECN)</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/frdetailsadd.asp">
+																	<div><i class="fa fa-bus fa1-1p5x workflow-icon"></i></div>Air Freight Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/stdetailsadd.asp">
+																	<div><i class="fa fa-credit-card fa1-1p5x workflow-icon"></i></div>Scrap Ticket Request</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/holiday/myholiday.aspx">
+																	<div><i class="fa fa-sun-o fa1-1p5x workflow-icon"></i></div>Leave and Absence Management</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/qm/QMOngoing">
+																	<div><i id="nav-qm-icon1" class="fa fa-file-text-o fa1-1p25x workflow-icon"><i id="nav-qm-icon2" class="fa fa-check-square-o fa-aside-0p75x workflow-icon nav-qm-icon2"></i></i>
+																	</div>Qualification Matrix</a>
+															</li>
+
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Workflow/BOM/BomRequestAdd">
+																	<div><i class="fa fa-file fa1-1p5x workflow-icon"></i></div>Special BOM item Request</a>
+															</li>
+
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="dropdown" id="HR">
+										<a href="https://intra2.strixgroup.com/IntranetNew/hr/default/Index">HR<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-2">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/HR/Default/AboutHR">
+																	<div><i class="fa fa-info-circle fa1-1p5x hr-icon"></i></div>About HR</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/pms/pmstasks.asp">
+																	<div><i class="fa fa-users fa1-1p5x hr-icon"></i></div>Performance Management Process</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/HR/Default/HRForm">
+																	<div><i class="fa fa-file fa1-1p5x hr-icon"></i></div>HR Process/Forms</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/HR/Default/CodeofValue">
+																	<div><i class="fa fa-file-text fa1-1p5x hr-icon"></i></div>Code of Value</a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/HR/Default/HRRecruitment">
+																	<div><i class="fa fa-child fa1-1p5x hr-icon"></i></div>Recruitment</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/HR/Default/HRTraining">
+																	<div><i class="fa fa-file-powerpoint-o fa1-1p5x hr-icon"></i></div>Training</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/hr/printcard.aspx">
+																	<div><i class="fa fa-id-card fa1-1p5x hr-icon"></i></div>Print Employee Card</a>
+															</li>
+															<li>
+																<a href="https://www.surveymonkey.com/r/D6VNRL2">
+																	<div><i class="fa fa-files-o fa1-1p5x hr-icon"></i></div>Departure Questionnaire</a>
+															</li>
+															<li>
+																<a href="https://www.surveymonkey.net/results/SM-QV6YDPTG/">
+																	<div><i class="fa fa-files-o fa1-1p5x hr-icon"></i></div>Departure Questionnaire Results (SGZ Only)</a>
+															</li>
+															<li>
+																<a href="https://www.surveymonkey.net/results/SM-JPKXLPTG/">
+																	<div><i class="fa fa-files-o fa1-1p5x hr-icon"></i></div>Departure Questionnaire Results (All Locations)</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/hr/outsourcing/printcard4outsource.aspx">
+																	<div><i class="fa fa-id-card fa1-1p5x hr-icon"></i></div>Print Outsourcing Employee Card</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="dropdown" id="Finance">
+										<a href="https://intra2.strixgroup.com/IntranetNew/Finance/default/Index">Finance<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Finance/Default/CostCentreList">
+																	<div><i class="fa fa-user-circle fa1-1p5x finance-icon"></i></div>Cost Centre Owners Matrix</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Finance/Default/AccountCodeList">
+																	<div><i class="fa fa-sort-numeric-asc fa1-1p5x finance-icon"></i></div>Account Codes</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Finance/EAMaster/EAMasterList">
+																	<div><i class="fa fa-list fa1-1p5x finance-icon"></i></div>EA Master List</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Finance/Default/EngineeringOwnerList">
+																	<div><i class="fa fa-user-circle fa1-1p5x finance-icon"></i></div>Engineering Owners (PR)</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/finance/cashbookpayments.asp">
+																	<div><i class="fa fa-book fa1-1p5x finance-icon"></i></div>Cash Book</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Finance/Default/CostCentreOwnerForExpensesList">
+																	<div><i class="fa fa-user-circle fa1-1p5x finance-icon"></i></div>Cost Centre Owners Matrix (Ex)</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="dropdown" id="Engineering">
+										<a href="https://intra2.strixgroup.com/IntranetNew/Engineering/default/Index">Engineering<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-2">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/researchdev/researchdev.asp">
+																	<div><i class="fa fa-industry engin-icon"><i class="fa fa-search fa-aside-1p5x engin-icon"></i></i>
+																	</div>Research and Development</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/riskmanagement/riskmanagement.asp">
+																	<div><i class="fa fa-flash fa1-1p5x engin-icon"></i></div>Risk Management</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/workshop/workshop.asp">
+																	<div><i class="fa fa-cogs fa1-1p5x engin-icon"></i></div>Ronaldsway Workshop</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/approvals/approvaldocs.asp">
+																	<div><i class="fa fa-file-text fa1-1p5x engin-icon"></i></div>Approvals</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/approvals/patentdocs.asp">
+																	<div><i class="fa fa-file-excel-o fa1-1p5x engin-icon"></i></div>Patents</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/productcontrol/productcontrol.asp">
+																	<div><i class="fa fa-file-excel-o fa1-1p5x engin-icon"></i></div>Control Plans</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx#" onclick="window.open(&#39;/admin/tsplatformforuser.asp&#39;,&#39;THS_@userid&#39;,&#39;resizable=yes,scrollbars=0,titlebar=false,width=800,height=570&#39;);">
+																	<div><i class="fa fa-clock-o fa1-1p5x engin-icon"></i></div>Platform Team Timesheet
+																</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/pttsmanage.aspx">
+																	<div><i class="fa fa-users fa1-1p5x engin-icon"></i></div>Manage Timesheet Users </a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="file://wood/groups/PROJECTS/APPROVALS/APPROVALS.xls">
+																	<div><i class="fa fa-file-excel-o fa1-1p5x engin-icon"></i></div>Approvals Status Report</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/projectresource/projectresourcereports.asp">
+																	<div><i class="fa fa-file-text fa1-1p5x engin-icon"></i></div>Resource Management</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/iqc/iqcdocsindex.asp">
+																	<div><i class="fa fa-file-word-o fa1-1p5x engin-icon"></i></div>IQC Documents</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/elementcerts/elementcerts.asp">
+																	<div><i class="fa fa-file-text fa1-1p5x engin-icon"></i></div>Element Compatibility Certs</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/cadpart/cadpartnumbers.asp">
+																	<div><i class="fa fa-folder fa1-1p5x engin-icon"></i></div>CAD Part Number Reservation</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/swp/swpdocuments.aspx">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x engin-icon"></i></div>AO Data Sheets</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eng/newideas/newideas.asp">
+																	<div><i class="fa fa-question-circle fa1-1p5x engin-icon"></i></div>New Ideas</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li id="SalesMarketing" class="dropdown">
+										<a href="https://intra2.strixgroup.com/IntranetNew/Sales/default/Index">Sales&amp;Marketing<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-2">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/wm/worldmodel.asp">
+																	<div><i class="fa fa-globe fa1-1p5x sales-icon"></i></div>World Model</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/despack/despacks.asp">
+																	<div><i class="fa fa-file fa1-1p5x sales-icon"></i></div>Designer Packs</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/wm/oemdocs.asp">
+																	<div><i class="fa fa-user fa1-1p5x sales-icon"></i></div>OEM Information</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/productsearchadd.asp">
+																	<div><i class="fa fa-search fa1-1p5x sales-icon"></i></div>Product Search</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/ao/joblist.aspx">
+																	<div><i class="fa fa-list fa1-1p5x sales-icon"></i></div>AO Consumer Query</a>
+															</li>
+															<!--Remove in Intranet and place at N:\SRON\Sales as Simon Charlesworth Required. Wendy.Wei, 20170712-->
+
+														</ul>
+													</div>
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/VR/">
+																	<div><i class="fa fa-handshake-o fa1-1p5x sales-icon"></i></div>Visit Reports</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/vrreport.aspx">
+																	<div><i class="fa fa-file-text fa1-1p5x sales-icon"></i></div>Daily Visit Report Sums</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/vr/finance/salesbudget.aspx">
+																	<div><i class="fa fa-dollar fa1-1p5x sales-icon"></i></div>Sales Budget</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/salesforecast/default.aspx">
+																	<div><i class="fa fa-line-chart fa1-1p5x sales-icon"></i></div>Sales Forecast</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/sales/Reporting%20Schedule%202018.pdf">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x sales-icon"></i></div>Sales Report Schedule</a>
+															</li>
+															<!--Remove in Intranet and place at N:\SRON\Sales as Simon Charlesworth Required. Wendy.Wei, 20170712-->
+
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Sales/OpportunityTracker/OpportunityTrackerList">
+																	<div><i class="fa fa-inbox fa1-1p5x sales-icon"></i></div>Opportunity Tracker</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li id="Operations" class="dropdown">
+										<a href="https://intra2.strixgroup.com/IntranetNew/Operations/default/Index">Operations<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column columns-2">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/Default/SupplyChainDoc">
+																	<div><i class="fa fa-file-text fa1-1p5x operations-icon"></i></div>Supply Chain Document</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/Default/SupplyChainAdmin">
+																	<div><i class="fa fa-user fa1-1p5x operations-icon"></i></div>Supply Chain Administrator</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/supply/vehiclebookingadd.aspx">
+																	<div><i class="fa fa-bus fa1-1p5x operations-icon"></i></div>Vehicle Usage</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/supply/sr/sradd.asp">
+																	<div><i class="fa fa-recycle fa1-1p5x operations-icon"></i></div>Product Swap/Return</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/offline/payMgrOpenOrder.aspx">
+																	<div><i class="fa fa-dollar fa1-1p5x operations-icon"></i></div>Payment Management</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/offline/index.htm">
+																	<div><i class="fa fa-folder fa1-1p5x operations-icon"></i></div>Store Management</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/Offline/QuList.aspx">
+																	<div><i class="fa fa-print fa1-1p5x operations-icon"></i></div>QU Note Printing</a>
+															</li>
+															<li class="divider"></li>
+															<li>
+																<a href="https://intra2.strixgroup.com/miscitem/misciteminvlist.aspx">
+																	<div><i class="fa fa-list fa1-1p5x operations-icon"></i></div>Misc Items</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/supply/itt/ittongoing.aspx">
+																	<div><i class="fa fa-file-o fa1-1p5x operations-icon"></i></div>Invitation To Tender</a>
+															</li>
+														</ul>
+													</div>
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/Default/SupplyMPSSecurity">
+																	<div><i class="fa fa-user-secret fa1-1p5x operations-icon"></i></div>MPS Security</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/Default/StrixOpExcellence">
+																	<div><i class="fa fa-file-text fa1-1p5x operations-icon"></i></div>Strix Operation Excellence</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/Default/SupplyProdSys">
+																	<div><i class="fa fa-file-text fa1-1p5x operations-icon"></i></div>Strix Production System</a>
+															</li>
+															<li>
+																<a href="http://intra2.strixgroup.com:8012/">
+																	<div><i class="fa fa-cogs fa1-1p5x operations-icon"></i></div>Strix MES</a>
+															</li>
+															<li>
+																<a href="http://intra2.strixgroup.com:8013/">
+																	<div><i class="fa fa-cogs fa1-1p5x operations-icon"></i></div>Moulding</a>
+															</li>
+															<li class="divider"></li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eticket/MouldTicket.aspx">
+																	<div><i class="fa fa-list fa1-1p5x operations-icon"></i></div>Moulding Ticket</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/eticket1/itemlinelist.aspx">
+																	<div><i class="fa fa-cog operations-icon"><i class="fa fa-wrench fa-aside-1x operations-icon"></i></i>
+																	</div>Run Rate Maintenance</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/admin/workflow/Ramsey/Web/DeptSelect.aspx">
+																	<div><i class="fa fa-line-chart fa1-1p5x operations-icon"></i></div>Ramsey Downtime OEE</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/Operations/InvoiceReport/Index">
+																	<div><i class="fa fa-info-circle fa1-1p5x operations-icon"></i></div>Invoice Report</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li id="IT" class="dropdown">
+										<a href="https://intra2.strixgroup.com/IntranetNew/it/default/index">IT<b class="caret"></b></a>
+										<ul class="dropdown-menu multi-column">
+											<li>
+												<div class="row">
+													<div class="col-sm-6">
+														<ul class="multi-column-dropdown">
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/IT/SupportList">
+																	<div><i class="fa fa-desktop  fa1-1p5x it-icon"></i></div>Technical Support</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/IT/About">
+																	<div><i class="fa fa-desktop it-icon"><i class="fa fa-info-circle fa-aside-1x it-icon"></i></i>
+																	</div>About IT</a>
+															</li>
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/IT/Policy">
+																	<div><i class="fa fa-file-pdf-o fa1-1p5x it-icon"></i></div>Policies</a>
+															</li>
+
+															<li>
+																<a href="https://intra2.strixgroup.com/IntranetNew/IT/UserManual">
+																	<div><i class="fa fa-file-text-o fa1-1p5x it-icon"></i></div>User Manual (用户手册)</a>
+															</li>
+
+															<li>
+																<a href="http://erp.strixgroup.com/SLClientDeploy/SyteLine.application">
+																	<div><i class="fa fa-sun-o fa1-1p5x it-icon"></i></div>Syteline V8 Installation</a>
+															</li>
+
+															<li>
+																<a href="https://bi2.strixgroup.com/cognos/cgi-bin/ppdscgi.exe?toc=%2FStrixCubes">
+																	<div><i class="fa fa-cube fa1-1p5x it-icon"></i></div>Business Intelligence</a>
+															</li>
+															<li>
+																<a href="http://cognos2/ibmcognos/bi/">
+																	<div><i class="fa fa-cube fa1-1p5x it-icon"></i></div>New Cognos</a>
+															</li>
+
+														</ul>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<!--/.nav-collapse -->
+						</div>
+						<!--/.container-fluid -->
+						<script type="text/javascript">
+							var menuIds = ["Home", "Administration", "Workflow", "HR", "Finance", "Engineering", "Sales&Marketing", "Operations", "IT"];
+							var views = ["/Home", "/Admin", "/Workflow", "/HR", "/Finance", "/Engineering", "/Sales", "/Operations", "/IT"];
+							for(var i = 0; i < menuIds.length; i++) {
+								var url = document.location.href;
+								if(url.toLowerCase().indexOf(views[i].toLowerCase()) >= 0) { //if (title.indexOf(menuIds[i]) >= 0) {
+									//Set menu focus text style
+									if(menuIds[i] == "Sales&Marketing") {
+										$("#SalesMarketing >a").css("font-weight", "bold");
+									} else if(menuIds[i] == "Workflow") {
+										$("#Workflow >a").css("font-weight", "bold");
+										$("#Administration >a").css("font-weight", "normal");
+									} else
+										$("#" + menuIds[i] + ">a").css("font-weight", "bold");
+								}
+							}
+						</script>
+					</nav>
+				</div>
+			</div>
+
+			<div id="body-main">
+				<div class="full-container">
+
+					<center>
+
+						<h1>Ongoing Requests</h1>
+
+						<table cellpadding="1" cellspacing="1" width="100%">
+							<tbody>
+								<tr>
+									<td align="center">
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbmyhistory.aspx">My History</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/carbookingadd.aspx">Add A New Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbongoing.aspx">Ongoing Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbapproved.aspx">Approved Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbbooked.aspx">Booked Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbrejected.aspx">Rejected Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbcompleted.aspx">History Request</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbprice.aspx">Price</a>
+										|
+										<a href="https://intra2.strixgroup.com/admin/workflow/cbreport.aspx">Report</a>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<hr>
+						<br>
+
+						<table cellpadding="1" cellspacing="1" width="70%">
+							<tbody>
+								<tr>
+									<td>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table cellpadding="1" cellspacing="1" width="95%" border="0">
+
+							<tbody>
+								<tr>
+									<td>
+
+										<div>
+											<table class="table table-bordered table-condensed-s" cellspacing="0" align="Center" rules="all" border="1" id="ctl00_serverForm_gv" style="border-style:Solid;width:100%;border-collapse:collapse;">
+												<tbody>
+													<tr align="center" valign="middle" style="background-color:Yellow;height:30px;">
+														<th scope="col">Num.</th>
+														<th scope="col">User</th>
+														<th scope="col">Date</th>
+														<th scope="col">Time</th>
+														<th scope="col">Created</th>
+														<th scope="col">Destination</th>
+														<th scope="col">Collect</th>
+														<th scope="col">Drop</th>
+														<th scope="col">Return?</th>
+														<th scope="col">Car Type</th>
+														<th scope="col">User Qty</th>
+														<th scope="col">Shared?</th>
+														<th scope="col">Status</th>
+														<th scope="col">HR Comments</th>
+														<th scope="col">&nbsp;</th>
+														<th scope="col">&nbsp;</th>
+													</tr>
+													<tr>
+														<td align="center">32994</td>
+														<td align="left">
+															<a href="https://intra2.strixgroup.com/admin/workflow/carbookingedit.aspx?cb_id=32994&amp;pageback=cbongoing">
+
+																<span>Stephen Elliott</span>
+															</a>
+
+														</td>
+														<td align="center" style="white-space:nowrap;">2018-09-01(Sat)</td>
+														<td align="center">17:40</td>
+														<td align="center">2018-08-22 11:48</td>
+														<td align="left">黄埔(HuangPu)</td>
+														<td align="left">
+
+															<a href="https://intra2.strixgroup.com/admin/workflow/carbookingedit.aspx?cb_id=32994&amp;pageback=cbcompleted">
+																<span>Baiyun Airport</span>
+															</a>
+
+														</td>
+														<td align="left">
+
+															<span>Phonix Hotel</span>
+
+														</td>
+														<td>NO</td>
+														<td align="center">普通小车(Daily Rental 5 seats)</td>
+														<td align="center">1</td>
+														<td align="left">
+
+															<span>Nobody</span>
+
+														</td>
+														<td align="left">Tim Ackerley</td>
+														<td align="left">
+
+															<span>杨司机   17:45   白云机场---凤凰城酒店   Stephen</span>
+
+														</td>
+														<td>
+															<a href="javascript:__doPostBack(&#39;ctl00$serverForm$gv&#39;,&#39;delete$0&#39;)">Del</a>
+														</td>
+														<td align="left">
+
+															<a href="https://intra2.strixgroup.com/admin/workflow/carbookingedit.aspx?cb_id=32994&amp;pageback=cbongoing" onmouseover="mouseover(59849);" onmouseleave="mousedown();">
+
+																<span>Update</span>
+															</a>
+
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div style="position:absolute; z-index:10; background-color:red; left:600; top:200; display:none" id="div1"><iframe name="ifr1" height="330" src="./CarbookingList_files/saved_resource.html" id="ifr1" style="display:none" frameborder="0" allowtransparency="true" scrolling="no" bordercolor="white" marginheight="0" marginwidth="0"></iframe></div>
+
+					</center>
+				</div>
+			</div>
+			<div id="body-foot" style="text-align:center; height:20px;">
+				<a style="color:#666" href="https://intra2.strixgroup.com/IntranetNew/IT/Default/SupportAdd">For Intranet related enquires please raise support request</a>
+			</div>
+
+		</form>
+
+		<div id="window_resizer_tooltip_wrapper" data-pos-y="bottom" data-pos-x="right"></div>
+	</body>
+
+</html>
